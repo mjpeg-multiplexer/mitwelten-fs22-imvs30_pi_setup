@@ -1,5 +1,10 @@
 # Raspberry PI - Setup Instructions
 
+## Prerequisites
+- Raspberry Pi 3A+
+- PiCam
+
+
 ## Setup
 ### Prepare SD Card
 On the computer
@@ -76,15 +81,13 @@ On the Pi
     $ cd ~/mjpg-streamer/mjpg-streamer-experimental
     $ mkdir images
 	$ cd images
-    $ wget https://github.com/backdrop-contrib/sample_animal_content/blob/1.x-1.x/images/Fox.jpg
-	$ wget https://github.com/backdrop-contrib/sample_animal_content/blob/1.x-1.x/images/Panda.jpg
-	$ mv Fox.jpg fox.jpg
-	$ mv Panda.jpg panda.jpg
+    $ wget -O ./fox.jpg https://raw.githubusercontent.com/backdrop-contrib/sample_animal_content/1.x-1.x/images/Fox.jpg
+	$ wget -O ./panda.jpg https://raw.githubusercontent.com/backdrop-contrib/sample_animal_content/1.x-1.x/images/Panda.jpg
 	$ cd ..
     $ mjpg_streamer -i 'input_file.so  -f /home/pi/mjpg-streamer/mjpg-streamer-experimental/images/ --existing' -o 'output_http.so -w /home/pi/mjpg-streamer/mjpg-streamer-experimental/www -p 8080'
 	```
 
-## Test the Pi cam (TBD)
+## Test the Pi cam
 On the Pi
 - Take a picture (add `-hf -vf` to flip it)
     ```
@@ -105,8 +108,7 @@ On the Pi
 - Provide a video stream with mjpeg_streamer
     ```
     $ ./mjpg_streamer -i "input_uvc.so" -o "output_http.so -p 8090"
-    ```	
-	
+    ```		
 	
 ## Test streaming server via camera
 On the Pi
