@@ -1,0 +1,2 @@
+INPUTARG=-i "/home/pi/mjpg-streamer/mjpg-streamer-experimental/input_raspicam.so -x 640 -y 480 -fps 10"
+OUTPUTARG=-o "/home/pi/mjpg-streamer/mjpg-streamer-experimental/output_http.so -p 8080 -www /home/pi/mjpg-streamer/mjpg-streamer-experimental/www"

@@ -112,7 +112,7 @@ On the Pi
 	
 ## Test streaming server via camera
 On the Pi
-- Testing mjpef stream server with PiCam
+- Testing mjpeg stream server with PiCam
 	```
 	$ /home/pi/mjpg-streamer/mjpg-streamer-experimental/mjpg_streamer -i "/home/pi/mjpg-streamer/mjpg-streamer-experimental/input_raspicam.so -x 640 -y 480 -fps 10" -o "/home/pi/mjpg-streamer/mjpg-streamer-experimental/output_http.so -p 8080"	
 	```
