@@ -3,6 +3,7 @@
 ## Prerequisites
 - Raspberry Pi 3A+
 - PiCam
+- [mjpeg streamer](https://github.com/jacksonliam/mjpg-streamer)
 
 
 ## Setup
@@ -21,7 +22,7 @@ On the computer
     $ sudo raspi-config # Advanced Options > Enable SSH
     ```
 
-### Prepare Raspberry Pi 3B+
+### Prepare Raspberry Pi 3A+
 On the Pi
 - Insert prepared SD Card
 - connect display via HDMI
@@ -76,7 +77,7 @@ On the Pi
 	
 ## Test streaming server
 On the Pi
-- Install
+- Test streaming with example images
     ```
     $ cd ~/mjpg-streamer/mjpg-streamer-experimental
     $ mkdir images

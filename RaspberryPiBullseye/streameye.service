@@ -1,0 +1,14 @@
+[Unit]
+Requires=network.target
+After=network.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/streameye
+ExecStart=libcamera-vid -t 0 --width 640 --height 480 --framerate 10 --inline -n --codec mjpeg  -o -| streameye
+Restart=always
+TimeoutSec=10
+
+[Install]
+WantedBy=multi-user.target

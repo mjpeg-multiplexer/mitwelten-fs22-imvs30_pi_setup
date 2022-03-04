@@ -1,5 +1,11 @@
 # Raspberry PI - Setup Instructions
 
+## Prerequisites
+- Raspberry Pi 3A+
+- ArduCam
+- [streameye](https://github.com/ccrisan/streameye)
+
+
 ## Setup
 ### Prepare SD Card
 On the computer
@@ -11,8 +17,12 @@ On the computer
     ```
     $ touch /Volumes/boot/ssh
     ```
+- Alternative (via command line)
+    ```
+    $ sudo raspi-config # Advanced Options > Enable SSH
+    ```
 
-### Prepare Raspberry Pi 3B+
+### Prepare Raspberry Pi 3A+
 On the Pi
 - Insert prepared SD Card
 - connect display via HDMI
@@ -61,16 +71,27 @@ On the Pi
     $ make
     $ sudo make install
     ```	
+	
+## Setup the Arducam (https://snfmitwelten.slack.com/archives/C01GPUC3B61/p1645694668522309)
+On the Pi
+
+Setup steps on RPi 3a+ with Raspbian Bullseye:
+- Follow these instructions: https://www.arducam.com/docs/cameras-for-raspberry-pi/raspberry-pi-libcamera-guide/#how-to-install-libcamera-d9f38d46-8576-43e2-9375-e225c272095f
+- Then enable Glamor
+    ```
+    $ Run sudo raspi-config --> Advanced Options --> Enable Glamor graphic acceleration and reboot
+    ```
+
 
 ## Test streaming server
 On the Pi
-- Run a speed test
+- Test streaming with example images
     ```
     $ cd ~/streameye
     $ mkdir images
 	$ cd images
-    $ wget https://github.com/backdrop-contrib/sample_animal_content/blob/1.x-1.x/images/Fox.jpg
-	$ wget https://github.com/backdrop-contrib/sample_animal_content/blob/1.x-1.x/images/Panda.jpg
+    $ wget -O ./fox.jpg https://raw.githubusercontent.com/backdrop-contrib/sample_animal_content/1.x-1.x/images/Fox.jpg
+	$ wget -O ./panda.jpg https://raw.githubusercontent.com/backdrop-contrib/sample_animal_content/1.x-1.x/images/Panda.jpg
 	$ cd ..
     $ while true; do
     for file in images/*.jpg; do
@@ -81,27 +102,32 @@ On the Pi
 done | streameye -s "--separator--"
 	```
 
-## Test the Arducam (TBD) https://snfmitwelten.slack.com/archives/C01GPUC3B61/p1645694668522309
+## Test streaming server via camera
 On the Pi
+- Testing mjpeg stream server with PiCam
+	```
+	$ libcamera-vid -t 0 --width 640 --height 480 --framerate 10 --inline -n --codec mjpeg  -o -| streameye
+	```
 
-Setup steps on RPi 3b+ with Raspbian Bullseye:
-- Follow these instructions: https://www.arducam.com/docs/cameras-for-raspberry-pi/raspberry-pi-libcamera-guide/#how-to-install-libcamera-d9f38d46-8576-43e2-9375-e225c272095f
-- sdfdfdf
+Setup env via systemd
+- streameye Service
     ```
-    $ Run sudo raspi-config --> Advanced Options --> Enable Glamor graphic acceleration and reboot
-    ```
-- sdfdfdf
-    ```
-    $ sudo nano /boot/config.txt --> add dtoverlay=vc4-kms-v3d,cma-256  and reboot.
-    ```
+    $ sudo wget -O /etc/systemd/system/mjpg-streamer.service https://raw.githubusercontent.com/TobiasKunzFHNW/mitwelten-fs22-imvs30_pi_setup/main/RaspberryPiBullseye/streameye.service	
+	```	
 
+- Start streameye.service
+    ```
+    sudo systemctl daemon-reload
+    sudo systemctl enable streameye.service
+    sudo systemctl start streameye.service
+    ```    
 
-libcamera-vid -t 0 --width 640 --height 480 --framerate 10 --inline -n --codec mjpeg  -o -| streameye
+## JPEG header when streaming via streameye
 
     ```
     --FrameBoundary
-Content-Type: image/jpeg
-Content-Length: 5689
+	Content-Type: image/jpeg
+	Content-Length: 5689	
     ```
 
 
