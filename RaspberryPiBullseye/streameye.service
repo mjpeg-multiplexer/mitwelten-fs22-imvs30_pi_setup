@@ -6,7 +6,7 @@ After=network.target
 Type=simple
 User=pi
 WorkingDirectory=/home/pi/streameye
-ExecStart=/bin/sh -c 'libcamera-vid -t 0 --width 640 --height 480 --framerate 10 --inline -n --codec mjpeg  -o -| streameye -d'
+ExecStart=/bin/sh -c 'libcamera-vid -t 0 --width 640 --height 480 --framerate 10 --inline -n --codec mjpeg --autofocus -o -| streameye -d'
 Restart=always
 TimeoutSec=10
 
