@@ -112,7 +112,7 @@ On the Pi
 Setup env via systemd
 - streameye Service
     ```
-    $ sudo wget -O /etc/systemd/system/mjpg-streamer.service https://raw.githubusercontent.com/TobiasKunzFHNW/mitwelten-fs22-imvs30_pi_setup/main/RaspberryPiBullseye/streameye.service	
+    $ sudo wget -O /etc/systemd/system/streameye.service https://raw.githubusercontent.com/TobiasKunzFHNW/mitwelten-fs22-imvs30_pi_setup/main/RaspberryPiBullseye/streameye.service	
 	```	
 
 - Start streameye.service
