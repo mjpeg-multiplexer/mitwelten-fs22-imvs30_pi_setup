@@ -108,8 +108,6 @@ On the Pi
     ```	
 	
 	
-	
-	
 ## Test streaming server via camera
 On the Pi
 - Testing mjpeg stream server with PiCam
@@ -120,8 +118,8 @@ On the Pi
 Setup env via systemd
 - MJPEG Service
     ```
-    $ sudo wget -O /etc/systemd/system/mjpg-streamer.service https://raw.githubusercontent.com/mitwelten/mitwelten-iot-hardware-poc/main/RaspberryPi/PoEPiCam/mjpg-streamer.service
-	$ sudo wget -O /etc/systemd/system/.mjpgconf https://raw.githubusercontent.com/mitwelten/mitwelten-iot-hardware-poc/main/RaspberryPi/PoEPiCam/.mjpgconf	
+    $ sudo wget -O /etc/systemd/system/mjpg-streamer.service https://raw.githubusercontent.com/TobiasKunzFHNW/mitwelten-fs22-imvs30_pi_setup/main/RaspberryPiBuster/mjpg-streamer.service
+	$ sudo wget -O /etc/systemd/system/.mjpgconf https://raw.githubusercontent.com/TobiasKunzFHNW/mitwelten-fs22-imvs30_pi_setup/main/RaspberryPiBuster/.mjpgconf	
 	```	
 
 - Start mjpg-streamer.service
